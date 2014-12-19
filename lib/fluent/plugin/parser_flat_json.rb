@@ -28,7 +28,9 @@ module Fluent
         record = Yajl.load(text)
 
         if value = record.delete(@time_key)
-          if @time_format
+          if @time_format == 'ms'
+            time = (value.to_i / 1000).to_i
+	  elsif @time_format
             time = @mutex.synchronize { @time_parser.parse(value) }
           else
             time = value.to_i

@@ -8,9 +8,13 @@ CONFIG_NONE = {}
 CONFIG_TIME_KEY = {
   "time_key" => "timestamp"
 }
+CONFIG_TIME_KEY_MS = {
+  "time_key" => "timestamp",
+  "time_format" => "ms"
+}
 CONFIG_TIME_FORMAT = {
   "time_key" => "timestamp",
-  "time_format" => "%Y%m%d%H:%M:%S"
+  "time_format" => "%Y%m%d%H%M%S"
 }
 
 def create_driver(conf = CONFIG_NONE)
@@ -32,8 +36,42 @@ class JSONFlatParserTest < Test::Unit::TestCase
 
     d = create_driver(CONFIG_TIME_KEY)
     d.call(rec) { |time, record|
-      assert_equal(time, 1418973586)
-      assert_equal(record, expected)
+      assert_equal(1418973586, time)
+      assert_equal(expected, record)
+    }
+
+  end
+
+  def test_format_metrics_with_time_format_in_ms
+    rec = '{"timestamp": "1418973586001", "log": [{"foo": "bar"}, {"baz": "quux"}], "next": ["a", "b"]}'
+    expected = {
+      "log.0.foo" => "bar",
+      "log.1.baz" => "quux",
+      "next.0" => "a",
+      "next.1" => "b"
+    }
+
+    d = create_driver(CONFIG_TIME_KEY_MS)
+    d.call(rec) { |time, record|
+      assert_equal(1418973586, time)
+      assert_equal(expected, record)
+    }
+
+  end
+
+  def test_format_metrics_with_time_format
+    rec = '{"timestamp": "20141219071946", "log": [{"foo": "bar"}, {"baz": "quux"}], "next": ["a", "b"]}'
+    expected = {
+      "log.0.foo" => "bar",
+      "log.1.baz" => "quux",
+      "next.0" => "a",
+      "next.1" => "b"
+    }
+
+    d = create_driver(CONFIG_TIME_FORMAT)
+    d.call(rec) { |time, record|
+      assert_equal(1418973586, time)
+      assert_equal(expected, record)
     }
 
   end
