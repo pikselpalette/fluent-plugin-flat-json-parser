@@ -3,7 +3,7 @@ $:.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name        = 'fluent-plugin-flat-json-parser'
-  gem.version     = '0.0.1'
+  gem.version     = '0.0.2'
   gem.authors     = ['Stephen Gran']
   gem.email       = 'steve@lobefin.net'
   gem.homepage    = 'https://github.com/sgran/fluent-plugin-flat-json-parser'
