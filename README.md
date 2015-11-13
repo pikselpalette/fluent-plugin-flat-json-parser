@@ -1,4 +1,4 @@
-# fluent-plugin-flat-json-parser [![Build Status](https://travis-ci.org/sgran/fluent-plugin-flat-json-parser.png)](https://travis-ci.org/sgran/fluent-plugin-flat-json-parser)
+# fluent-plugin-flat-json-parser [![Build Status](https://travis-ci.org/pikselpalette/fluent-plugin-flat-json-parser.png)](https://travis-ci.org/pikselpalette/fluent-plugin-flat-json-parser)
 
 fluentd parser plugin to create flattened JSON from nested JSON objects
 
@@ -54,7 +54,7 @@ Log line: '{"event":"request","timestamp":1418933352405,"instance":"http://ip-10
 
 ## Contributing
 
-1. Fork it ( http://github.com/sgran/fluent-plugin-flat-json-parser/fork )
+1. Fork it ( http://github.com/pikselpalette/fluent-plugin-flat-json-parser/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
