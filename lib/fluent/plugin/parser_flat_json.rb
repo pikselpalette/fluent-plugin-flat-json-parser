@@ -30,18 +30,18 @@ module Fluent
         if value = record.delete(@time_key)
           if @time_format == 'ms'
             time = (value.to_i / 1000).to_i
-	    timestamp = Time.at(value.to_f / 1000).strftime('%FT%T.%3N%:z')
+	    timestamp = Time.at(value.to_f / 1000).strftime('%FT%T.%3N%:z').to_s
 	  elsif @time_format
             time = @mutex.synchronize { @time_parser.parse(value) }
-            timestamp = Time.at(time)
+            timestamp = Time.at(time).to_s
           else
             time = value.to_i
-            timestamp = Time.at(time)
+            timestamp = Time.at(time).to_s
           end
         else
           if @estimate_current_event
             time = Engine.now
-            timestamp = Time.at(time)
+            timestamp = Time.at(time).to_s
           else
             time = nil
             timestamp = nil
