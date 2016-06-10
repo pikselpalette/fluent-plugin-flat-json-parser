@@ -34,6 +34,7 @@ Log line: '{"event":"request","timestamp":1418933352405,"instance":"http://ip-10
     tag logs
     format json_flat
     time_key timestamp
+    separator .
   </source>
   ```
 

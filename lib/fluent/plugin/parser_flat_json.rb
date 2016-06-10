@@ -2,6 +2,8 @@ module Fluent
   class TextParser
     class JSONFlatParser < JSONParser
 
+      config_param :separator, :string, :default => '.'
+
       def flatten_with_path(nested, parent_prefix = nil)
         res = {}
 
@@ -12,7 +14,7 @@ module Fluent
             k, v = i, elem
           end
 
-          key = parent_prefix ? "#{parent_prefix}.#{k}" : k # assign key name for result hash
+          key = parent_prefix ? "#{parent_prefix}#{@separator}#{k}" : k # assign key name for result hash
 
           if v.is_a? Enumerable
             res.merge!(flatten_with_path(v, key)) # recursive call to flatten child elements
