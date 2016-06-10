@@ -16,6 +16,11 @@ CONFIG_TIME_FORMAT = {
   "time_key" => "timestamp",
   "time_format" => "%Y%m%d%H%M%S"
 }
+CONFIG_SEPARATOR = {
+  "time_key" => "timestamp",
+  "time_format" => "%Y%m%d%H%M%S",
+  "separator" => "_"
+}
 
 def create_driver(conf = CONFIG_NONE)
   parser = Fluent::TextParser::JSONFlatParser.new
@@ -72,6 +77,24 @@ class JSONFlatParserTest < Test::Unit::TestCase
     }
 
     d = create_driver(CONFIG_TIME_FORMAT)
+    d.call(rec) { |time, record|
+      assert_equal(1418973586, time)
+      assert_equal(expected, record)
+    }
+
+  end
+
+  def test_format_metrics_with_separator
+    rec = '{"timestamp": "20141219071946", "log": [{"foo": "bar"}, {"baz": "quux"}], "next": ["a", "b"]}'
+    expected = {
+      "log_0_foo"  => "bar",
+      "log_1_baz"  => "quux",
+      "next_0"     => "a",
+      "next_1"     => "b",
+      "@timestamp" => "2014-12-19 07:19:46 +0000",
+    }
+
+    d = create_driver(CONFIG_SEPARATOR)
     d.call(rec) { |time, record|
       assert_equal(1418973586, time)
       assert_equal(expected, record)
