@@ -53,6 +53,10 @@ Log line: '{"event":"request","timestamp":1418933352405,"instance":"http://ip-10
 ###### time_format
 - Format string for logfile timestamp.
 
+###### separator
+- Default is '.'
+- Used as the value to split the keys
+
 ## Contributing
 
 1. Fork it ( http://github.com/pikselpalette/fluent-plugin-flat-json-parser/fork )
