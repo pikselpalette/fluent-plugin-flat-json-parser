@@ -34,6 +34,7 @@ Log line: '{"event":"request","timestamp":1418933352405,"instance":"http://ip-10
     tag logs
     format json_flat
     time_key timestamp
+    separator .
   </source>
   ```
 
@@ -51,6 +52,10 @@ Log line: '{"event":"request","timestamp":1418933352405,"instance":"http://ip-10
 
 ###### time_format
 - Format string for logfile timestamp.
+
+###### separator
+- Default is '.'
+- Used as the value to split the keys
 
 ## Contributing
 
