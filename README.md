@@ -20,7 +20,7 @@ Readying for a package build:
 
    $ bundle install
    $ bundle exec rake build
-   $ fpm -t deb -s gem --gem-bin-path /opt/td-agent/embedded/lib/ruby/gems/2.1.0/gems --gem-gem /opt/td-agent/embedded/bin/gem --no-auto-depends -i --iteration 1 pkg/fluent-plugin-flat-json-parser-$version.gem
+   $ fpm -t deb -s gem --gem-bin-path /opt/td-agent/embedded/lib/ruby/gems/2.1.0/gems --gem-gem /opt/td-agent/embedded/bin/gem --no-auto-depends --iteration 1 pkg/fluent-plugin-flat-json-parser-$version.gem
 
 ## Configuration
 
