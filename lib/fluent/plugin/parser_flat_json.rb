@@ -15,6 +15,7 @@ module Fluent
           end
 
           key = parent_prefix ? "#{parent_prefix}#{@separator}#{k}" : k # assign key name for result hash
+          key = key.gsub('.', @separator)
 
           if v.is_a? Enumerable
             res.merge!(flatten_with_path(v, key)) # recursive call to flatten child elements
